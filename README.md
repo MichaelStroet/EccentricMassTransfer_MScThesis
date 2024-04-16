@@ -4,4 +4,5 @@
 Michael Stroet
 
 Supervisor: Dr. Silvia Toonen
+
 Daily supervisor: Caspar Bruenech MSc
