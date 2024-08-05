@@ -2,12 +2,12 @@
 
 #SBATCH --partition=astera       # Request nodes from this partition
 #SBATCH --nodes 1                # How many nodes to ask for
-# #SBATCH --nodelist helios-cn041  # Specific node to use
-#SBATCH --ntasks 42              # Number of tasks (MPI processes) (per astera node, 126 is maximum)
+#SBATCH --nodelist helios-cn042  # Specific node to use
+#SBATCH --ntasks 45              # Number of tasks (MPI processes) (per astera node, 126 is maximum)
 #SBATCH --cpus-per-task 1        # Number of logical CPUS (threads) per task
 #SBATCH --time 10-0:00:00        # How long you need to run for in days-hours:minutes:seconds
 #SBATCH --mem 32gb               # How much memory you need per node
-#SBATCH -J example               # The job name. If not set, slurm uses the name of your script
+#SBATCH -J EMT                   # The job name. If not set, slurm uses the name of your script
 #SBATCH --output=logs/%j.out
 #SBATCH --error=logs/%j.err
 
@@ -55,12 +55,17 @@ trap 'clean_up' EXIT
 ##### Activate AMUSE environment #####
 
 # Load the same models used for installing AMUSE
-module load gcc/9.5.0
-module load gcc/hdf5/1.10.6
-module load gcc/openmpi/1.10.6
+module purge
+module load gnu12/12.3.0
+module load gsl/2.7.1
+module load openmpi4/4.1.6
+
 
 # Activate AMUSE python environment
-source /home/$USER/Amuse-env/bin/activate
+export PYTHON_ENV="Amuse-env"
+echo python envionment: $PYTHON_ENV
+
+source /home/$USER/$PYTHON_ENV/bin/activate
 
 # Allow AMUSE to use more workers per core
 export OMPI_MCA_rmaps_base_oversubscribe=1
@@ -89,5 +94,5 @@ cd $OUTPUT_FOLDER
 # Run your program
 date
 echo running main.py
-python3 /home/$USER/code/main.py
+python3.11 /home/$USER/code/main.py
 
