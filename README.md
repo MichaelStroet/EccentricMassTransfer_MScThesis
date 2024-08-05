@@ -1,4 +1,4 @@
-# Master Thesis - Hydrodynamical Simulations of Eccentric Mass Transfer
+# Master Thesis 2023-2024 - Hydrodynamical Simulations of Eccentric Mass Transfer
 
 Michael Stroet
 
