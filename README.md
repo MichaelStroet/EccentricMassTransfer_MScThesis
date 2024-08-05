@@ -1,5 +1,4 @@
-# Master Thesis
-## Hydrodynamical Simulations of Eccentric Mass Transfer
+# Master Thesis - Hydrodynamical Simulations of Eccentric Mass Transfer
 
 Michael Stroet
 
@@ -9,8 +8,13 @@ Daily supervisor: Caspar Bruenech MSc
 
 Animations available on YouTube: https://www.youtube.com/playlist?list=PLD-IpZk3HomJ3ju3GYBxuoq9Ehgm2W7W2
 
+## Circular mass transfer
+![plot](Circular_simulation.png)
 
-### Abstract
+## Eccentric mass transfer
+![plot](Eccentric_simulation.png)
+
+## Abstract
 
 _Aims._ Observations have shown that stars often come in systems of two or more stars.
 One of the most important stellar interaction mechanics is mass transfer, which has
@@ -43,3 +47,4 @@ case. Several of my findings corroborate the results of previous hydrodynamical
 simulations, while also refuting some key assumptions made in current analytical
 models. My code can be used in the future to run many more simulations of systems
 with different mass ratios and higher eccentricities at larger resolutions.
+
