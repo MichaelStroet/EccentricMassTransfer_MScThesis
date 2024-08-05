@@ -1,34 +1,35 @@
-module load gcc/9.5.0
-module load gcc/hdf5/1.10.6
-module load gcc/openmpi/1.10.6
+# Load modules
+module load gnu12/12.3.0
+module load gsl/2.7.1
+module load openmpi4/4.1.6
 
-module load anaconda3/python3.7.3
-
-
-python3 -m venv Amuse-env
+# Create virtual Python environment
+python3.11 -m venv Amuse-env
 source Amuse-env/bin/activate
 
+# Install Python libraries
 pip install --upgrade pip setuptools
 pip install numpy docutils mpi4py h5py wheel
-pip install scipy astropy jupyter pandas seaborn matplotlib
+pip install scipy astropy jupyter matplotlib tqdm pynbody
 
-git    clone https://github.com/amusecode/amuse.git
-cd     amuse
-pip    install -e .
+# Get AMUSE
+cd    Amuse-env
+git   clone https://github.com/amusecode/amuse.git
+cd    amuse
+pip   install -e .
 
-#
-#python3 setup.py develop_build
-#
-#or do it per code, eg:
-#
-#make seba.code 
-#make gadget2.code
-#make huayno.code
-#make mesa.code 
-#
+# Build gadget2
+make gadget2.code
 
-make gadget2.code >& make_gadget2_code.log
+# Build huayno
+make huayno.code
 
-make huayno.code >& make_huayno_code.log
+# Build MESA (builds both r15140 and r2208, takes a long time)
+make mesa.code 
 
-make mesa.code >& make_mesa_code.log
+
+#####
+# Old hack for installing gadget2 which used wrong gsl flags, probably not needed anymore
+#####
+# go to /home/$USER/Amuse-env/amuse/src/amuse/community/gadget2/Makefile
+# Remove the '?' from '?=' at GSL_FLAGS and GSL_LIBS
